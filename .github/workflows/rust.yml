@@ -15,8 +15,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Initialize Energy Estimation
+      uses: green-coding-berlin/eco-ci-energy-estimation@v2
+      with:
+        task: start-measurement
+      continue-on-error: true
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: Build
       run: cargo build --verbose
     - name: Run tests
       run: cargo test --verbose
+    - name: Tests measurement
+      uses: green-coding-berlin/eco-ci-energy-estimation@v2
+      with:
+        task: get-measurement
+        label: 'Rust build'
+      continue-on-error: true
+    - name: Show Energy Results
+      uses: green-coding-berlin/eco-ci-energy-estimation@v2
+      with:
+        task: display-results
+      continue-on-error: true
