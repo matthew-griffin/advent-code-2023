@@ -3,4 +3,8 @@ resolver = "2"
 
 members = [
     "main",
+    "day_one",
 ]
+
+[workspace.dependencies]
+indoc = "2"
