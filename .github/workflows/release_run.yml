@@ -28,7 +28,7 @@ jobs:
       uses: green-coding-berlin/eco-ci-energy-estimation@v2
       with:
         task: get-measurement
-        label: 'Rust build'
+        label: 'Release run'
       continue-on-error: true
     - name: Show Energy Results
       uses: green-coding-berlin/eco-ci-energy-estimation@v2
