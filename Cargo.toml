@@ -5,6 +5,7 @@ members = [
     "main",
     "day_one",
     "day_two",
+    "day_three",
 ]
 
 [workspace.dependencies]

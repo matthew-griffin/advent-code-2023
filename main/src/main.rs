@@ -14,6 +14,11 @@ fn day_two(input: &str) {
     println!("Day 2, Part 2: {part2}");  
 }
 
+fn day_three(input: &str) {
+    let part1 = day_three::part_one(&input);
+    println!("Day 3, Part 1: {part1}");
+}
+
 fn main() {
     let args: Vec<_> = env::args().collect();
     let day_number = match args.len() {
@@ -24,6 +29,7 @@ fn main() {
     let mut days: BTreeMap<u8, fn(&str)> = BTreeMap::new();
     days.insert(1, day_one);
     days.insert(2, day_two);
+    days.insert(3, day_three);
 
     match days.entry(day_number) {
         Entry::Occupied(day) => {
