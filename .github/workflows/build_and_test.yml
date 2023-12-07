@@ -22,15 +22,27 @@ jobs:
       continue-on-error: true
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Checkout Measurement
+      uses: green-coding-berlin/eco-ci-energy-estimation@v2
+      with:
+        task: get-measurement
+        label: 'Checkout'
+      continue-on-error: true
     - name: Build
       run: cargo build --verbose
+    - name: Build Measurement
+      uses: green-coding-berlin/eco-ci-energy-estimation@v2
+      with:
+        task: get-measurement
+        label: 'Build'
+      continue-on-error: true
     - name: Run tests
       run: cargo test --verbose
     - name: Tests measurement
       uses: green-coding-berlin/eco-ci-energy-estimation@v2
       with:
         task: get-measurement
-        label: 'Build and test'
+        label: 'Test'
       continue-on-error: true
     - name: Show Energy Results
       uses: green-coding-berlin/eco-ci-energy-estimation@v2
