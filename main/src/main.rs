@@ -21,6 +21,11 @@ fn day_three(input: &str) {
     println!("Day 3, Part 2: {part2}");
 }
 
+fn day_four(input: &str) {
+    let part1 = day_four::part_one(&input);
+    println!("Day 4, Part 1: {part1}");
+}
+
 fn main() {
     let args: Vec<_> = env::args().collect();
     let day_number = match args.len() {
@@ -32,6 +37,7 @@ fn main() {
     days.insert(1, day_one);
     days.insert(2, day_two);
     days.insert(3, day_three);
+    days.insert(4, day_four);
 
     match days.entry(day_number) {
         Entry::Occupied(day) => {

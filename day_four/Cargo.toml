@@ -1,12 +1,11 @@
 [package]
-name = "main"
+name = "day_four"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-day_one = { path = "../day_one" }
-day_two = { path = "../day_two" }
-day_three = { path = "../day_three" }
-day_four = { path = "../day_four" }
+
+[dev-dependencies]
+indoc = {workspace = true}
