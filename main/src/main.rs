@@ -23,7 +23,9 @@ fn day_three(input: &str) {
 
 fn day_four(input: &str) {
     let part1 = day_four::part_one(&input);
+    let part2 = day_four::part_two(&input);
     println!("Day 4, Part 1: {part1}");
+    println!("Day 4, Part 2: {part2}");
 }
 
 fn main() {

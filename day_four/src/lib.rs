@@ -1,20 +1,42 @@
-use std::collections::HashSet;
+use std::collections::{HashSet, HashMap};
+
+const MARKERS: [char; 2] = [':','|'];
 
 pub fn part_one(input: &str) -> u32 {
-    const MARKERS: [char; 2] = [':','|'];
     input.lines()
     .map(|line| {
-        let parts: Vec<_> = line.split(MARKERS).collect();
-        let winning: HashSet<u32> = HashSet::from_iter(parts[1].split_whitespace().map(str::parse::<u32>).map(Result::unwrap));
-        let results = parts[2].split_whitespace().map(str::parse::<u32>).filter(|num| {
-            winning.contains(num.as_ref().unwrap())
-        }).count();
+        let results = count_winners(line);
         match results {
             0 => 0,
             _ => 2u32.pow((results-1).try_into().unwrap())
         }
     })
     .sum()
+}
+
+pub fn part_two(input: &str) -> u32 {
+    let mut extra_cards: HashMap<usize, u32> = HashMap::new();    
+    input.lines().enumerate()
+    .map(|(index, line)| {
+        let results = count_winners(line);
+        let current_cards = match extra_cards.get(&index) {
+            Some(extra) => extra + 1,
+            None => 1
+        };
+        for i in 1..=results {
+            *extra_cards.entry(index + i).or_insert(0) += current_cards;
+        }
+        current_cards
+    })
+    .sum()
+}
+
+fn count_winners(line: &str) -> usize {
+    let parts: Vec<_> = line.split(MARKERS).collect();
+    let winning_numbers: HashSet<u32> = HashSet::from_iter(parts[1].split_whitespace().map(str::parse::<u32>).map(Result::unwrap));
+    parts[2].split_whitespace().map(str::parse::<u32>).filter(|num| {
+        winning_numbers.contains(num.as_ref().unwrap())
+    }).count()
 }
 
 #[cfg(test)]
@@ -36,5 +58,11 @@ mod tests {
     fn it_totals_the_winnings() {
         let result = part_one(test_input());
         assert_eq!(result, 13);
+    }
+
+    #[test]
+    fn it_totals_the_amount_of_scratchcards() {
+        let result = part_two(test_input());
+        assert_eq!(result, 30);
     }
 }
