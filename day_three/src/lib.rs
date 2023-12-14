@@ -88,7 +88,6 @@ fn parse_input(input: &str) -> (Vec<NumberBox>, Vec<Symbol>) {
         }
         if parsing_number {
             number_boxes.push(NumberBox{x_min, x_max: line.len()-1, y, number: current_number});
-            parsing_number = false;
         }
     }
     (number_boxes, symbols)
