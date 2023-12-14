@@ -2,6 +2,18 @@ use std::{ops::Range, collections::{HashMap, VecDeque}, str::Lines, cmp::Orderin
 use lazy_static::lazy_static;
 use regex::Regex;
 
+pub struct Solution;
+
+impl common::Solution for Solution {
+    fn part_one(&self, input: &str) -> Box<dyn std::fmt::Display> {
+        Box::new(part_one(input))
+    }
+
+    fn part_two(&self, input: &str) -> Box<dyn std::fmt::Display> {
+        Box::new(part_two(input))
+    }
+}
+
 lazy_static! {
     static ref MAP_PATTERN: Regex = Regex::new(r"(\w+)-to-(\w+) map:").unwrap();
 }
@@ -221,7 +233,7 @@ fn parse_input(input: &str) -> (Vec<u64>, Almanac) {
     (initial_seeds, almanac)
 }
 
-pub fn part_one(input: &str) -> u64 {
+fn part_one(input: &str) -> u64 {
     let (initial_seeds, almanac) = parse_input(input);
     initial_seeds.iter().map(|seed| {
         almanac.seed_to_location(seed)
@@ -229,7 +241,7 @@ pub fn part_one(input: &str) -> u64 {
     .min().unwrap()
 }
 
-pub fn part_two(input: &str) -> u64 {
+fn part_two(input: &str) -> u64 {
     let (initial_seeds, almanac) = parse_input(input);
     let seed_ranges: Vec<_> = initial_seeds.chunks(2).map(|seed_count| {
         seed_count[0]..(seed_count[0]+seed_count[1])

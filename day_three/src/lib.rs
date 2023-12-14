@@ -1,3 +1,15 @@
+pub struct Solution;
+
+impl common::Solution for Solution {
+    fn part_one(&self, input: &str) -> Box<dyn std::fmt::Display> {
+        Box::new(part_one(input))
+    }
+
+    fn part_two(&self, input: &str) -> Box<dyn std::fmt::Display> {
+        Box::new(part_two(input))
+    }
+}
+
 struct NumberBox {
     x_min: usize,
     x_max: usize,
@@ -29,7 +41,7 @@ struct Symbol {
     symbol: char
 }
 
-pub fn part_one(input: &str) -> u32 {
+fn part_one(input: &str) -> u32 {
     let (number_boxes, symbols) = parse_input(input);
     number_boxes.iter()
     .map(|num_box| {
@@ -43,7 +55,7 @@ pub fn part_one(input: &str) -> u32 {
     .sum()
 }
 
-pub fn part_two(input: &str) -> u32 {
+fn part_two(input: &str) -> u32 {
     let (number_boxes, symbols) = parse_input(input);
     symbols.iter()
     .map(|symbol| {

@@ -3,7 +3,19 @@ use std::collections::HashMap;
 use lazy_static::lazy_static;
 use regex::Regex;
 
-pub fn part_one(input: &str) -> u32 {
+pub struct Solution;
+
+impl common::Solution for Solution {
+    fn part_one(&self, input: &str) -> Box<dyn std::fmt::Display> {
+        Box::new(part_one(input))
+    }
+
+    fn part_two(&self, input: &str) -> Box<dyn std::fmt::Display> {
+        Box::new(part_two(input))
+    }
+}
+
+fn part_one(input: &str) -> u32 {
     input.lines()
     .map(|line| {
         let first_digit = line.chars().find(char::is_ascii_digit).unwrap();
@@ -47,7 +59,7 @@ fn extract_numbers(input: &str) -> Vec<u32> {
     result
 }
 
-pub fn part_two(input: &str) -> u32 {
+fn part_two(input: &str) -> u32 {
     input.lines()
     .map(|line| {
         let numbers = extract_numbers(line);

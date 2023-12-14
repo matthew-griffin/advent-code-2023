@@ -1,6 +1,18 @@
 use std::collections::HashMap;
 
-pub fn part_one(input: &str) -> u32 {
+pub struct Solution;
+
+impl common::Solution for Solution {
+    fn part_one(&self, input: &str) -> Box<dyn std::fmt::Display> {
+        Box::new(part_one(input))
+    }
+
+    fn part_two(&self, input: &str) -> Box<dyn std::fmt::Display> {
+        Box::new(part_two(input))
+    }
+}
+
+fn part_one(input: &str) -> u32 {
     let limits: HashMap<&str, u32> = HashMap::from([
         ("red", 12),
         ("green", 13),
@@ -24,7 +36,7 @@ pub fn part_one(input: &str) -> u32 {
     .sum()
 }
 
-pub fn part_two(input: &str) -> u32 {
+fn part_two(input: &str) -> u32 {
     input.lines()
     .map(|line| {
         let mut min_cubes: HashMap<&str, u32> = HashMap::new();

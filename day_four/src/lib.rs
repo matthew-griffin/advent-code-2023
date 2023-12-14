@@ -1,8 +1,20 @@
 use std::collections::{HashSet, HashMap};
 
+pub struct Solution;
+
+impl common::Solution for Solution {
+    fn part_one(&self, input: &str) -> Box<dyn std::fmt::Display> {
+        Box::new(part_one(input))
+    }
+
+    fn part_two(&self, input: &str) -> Box<dyn std::fmt::Display> {
+        Box::new(part_two(input))
+    }
+}
+
 const MARKERS: [char; 2] = [':','|'];
 
-pub fn part_one(input: &str) -> u32 {
+fn part_one(input: &str) -> u32 {
     input.lines()
     .map(|line| {
         let results = count_winners(line);
@@ -14,7 +26,7 @@ pub fn part_one(input: &str) -> u32 {
     .sum()
 }
 
-pub fn part_two(input: &str) -> u32 {
+fn part_two(input: &str) -> u32 {
     let mut extra_cards: HashMap<usize, u32> = HashMap::new();    
     input.lines().enumerate()
     .map(|(index, line)| {

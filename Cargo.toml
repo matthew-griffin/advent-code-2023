@@ -3,6 +3,7 @@ resolver = "2"
 
 members = [
     "main",
+    "common",
     "day_one",
     "day_two",
     "day_three",
