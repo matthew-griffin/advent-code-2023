@@ -1,0 +1,13 @@
+[package]
+name = "day_seven"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+common = { path = "../common" }
+lazy_static = {workspace = true}
+
+[dev-dependencies]
+indoc = {workspace = true}
