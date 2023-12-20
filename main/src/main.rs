@@ -15,6 +15,7 @@ fn main() {
     days.insert(3, &day_three::Solution);
     days.insert(4, &day_four::Solution);
     days.insert(5, &day_five::Solution);
+    days.insert(6, &day_six::Solution);
 
     match days.entry(day_number) {
         Entry::Occupied(day) => {
