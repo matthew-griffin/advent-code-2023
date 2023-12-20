@@ -32,6 +32,16 @@ fn extract_numbers(input: &str) -> Vec<u64> {
     .collect()
 }
 
+fn extract_number(input: &str) -> u64 {
+    let combined = input
+    .split_whitespace()
+    .skip(1)
+    .fold(String::new(), |acc, num| {
+        acc + num
+    });
+    combined.parse::<u64>().unwrap()
+}
+
 fn count_winning_methods(time: &u64, distance: &u64) -> u64 {
     let mut beaten_distance = false;
     let mut winning_methods = 0u64;
@@ -53,8 +63,11 @@ fn calculate_distance(time: &u64, x: u64) -> u64 {
     time * x - x.pow(2)
 }
 
-fn part_two(_input: &str) -> u64 {
-    0
+fn part_two(input: &str) -> u64 {
+    let mut lines = input.lines();
+    let time = extract_number(lines.next().unwrap());
+    let distance = extract_number(lines.next().unwrap());
+    count_winning_methods(&time, &distance)
 }
 
 #[cfg(test)]
@@ -71,5 +84,11 @@ mod tests {
     fn it_multiplies_ways_of_beating_record() {
         let result = part_one(test_input());
         assert_eq!(result, 288);
+    }
+
+    #[test]
+    fn it_finds_combined_ways_to_beat_record() {
+        let result = part_two(test_input());
+        assert_eq!(result, 71503);
     }
 }
